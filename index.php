@@ -1,7 +1,22 @@
-<?php declare(strict_types=1);
+<?php
 
 require __DIR__ . '/vendor/autoload.php';
 
-return function ($event) {
-    return 'Hello ' . ($event['name'] ?? 'world');
-};
+use Bref\Context\Context;
+use Bref\Event\Sqs\SqsEvent;
+use Bref\Event\Sqs\SqsHandler;
+
+class Handler extends SqsHandler
+{
+    public function handleSqs(SqsEvent $event, Context $context): void
+    {
+        foreach ($event->getRecords() as $record) {
+            // We can retrieve the message body of each record via `->getBody()`
+            $body = $record->getBody();
+
+            // do something
+        }
+    }
+}
+
+return new Handler();

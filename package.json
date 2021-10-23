@@ -1,0 +1,24 @@
+{
+  "name": "bref",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mokeseven7/bref.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mokeseven7/bref/issues"
+  },
+  "homepage": "https://github.com/mokeseven7/bref#readme",
+  "dependencies": {
+    "lift": "^0.1.2",
+    "serverless": "^2.64.1"
+  }
+}

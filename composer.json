@@ -13,7 +13,6 @@
             "email": "mike.mcgrath@apgteam.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "bref/bref": "dev-master"
     }
