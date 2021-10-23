@@ -1,4 +1,4 @@
-service: app
+service: queue.task
 
 provider:
     name: aws
@@ -9,11 +9,18 @@ plugins:
     - ./vendor/bref/bref
 
 functions:
-    hello:
+    worker:
         handler: index.php
-        description: ''
+        description: 'Queue Worker Class Looks For Jobs'
         layers:
-            - ${bref:layer.php-80}
+            - ${bref:layer.php-74}
+    writer: 
+        handler: writer.php
+        layers: 
+            - ${bref:layer.php-74}
+        events:
+            - httpApi: 'POST /message'
+    
 
 # Exclude files from deployment
 package:
