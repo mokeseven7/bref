@@ -20,5 +20,8 @@
   "dependencies": {
     "lift": "^0.1.2",
     "serverless": "^2.64.1"
+  },
+  "devDependencies": {
+    "serverless-lift": "^1.10.0"
   }
 }
