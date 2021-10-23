@@ -1,0 +1,20 @@
+{
+    "name": "mikemcgrath/bref",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mikemcgrath\\Bref\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mike McGrath",
+            "email": "mike.mcgrath@apgteam.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "bref/bref": "dev-master"
+    }
+}
