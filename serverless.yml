@@ -5,20 +5,27 @@ provider:
     region: us-east-1
     runtime: provided.al2
     lambdaHashingVersion: 20201221
+    apiGateway:
+        shouldStartNameWithService: true
 
 plugins:
-    - ./vendor/bref/bref
+  - ./vendor/bref/bref
+  - serverless-lift
 
 functions:
     apgapi: 
         handler: index.php
-        layers: 
-            - ${bref:layer.php-74}
+        layers:
+            - ${bref:layer.php-80-fpm}
         events:
             - httpApi: '*'
     
 
 # Exclude files from deployment
 package:
-    patterns:
-        - '!tests/**'
+  patterns:
+    - '!node_modules/**'
+    - '!public/storage'
+    - '!storage/**'
+    - '!tests/**'
+    - '!.env'
