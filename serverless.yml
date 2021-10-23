@@ -1,25 +1,21 @@
-service: queue.task
+service: queuetasks
 
 provider:
     name: aws
     region: us-east-1
     runtime: provided.al2
+    lambdaHashingVersion: 20201221
 
 plugins:
     - ./vendor/bref/bref
 
 functions:
-    worker:
+    apgapi: 
         handler: index.php
-        description: 'Queue Worker Class Looks For Jobs'
-        layers:
-            - ${bref:layer.php-74}
-    writer: 
-        handler: writer.php
         layers: 
             - ${bref:layer.php-74}
         events:
-            - httpApi: 'POST /message'
+            - httpApi: '*'
     
 
 # Exclude files from deployment
