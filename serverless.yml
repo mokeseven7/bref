@@ -10,7 +10,7 @@ provider:
 
 plugins:
   - ./vendor/bref/bref
-  - serverless-lift
+  - ./vendor/bref/extra-php-extensions
 
 functions:
     apgapi: 

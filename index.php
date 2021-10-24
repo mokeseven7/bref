@@ -2,24 +2,34 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Bref\Context\Context;
-use Bref\Event\Sqs\SqsEvent;
-use Bref\Event\Sqs\SqsHandler;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Popcorn\Serverless\Api;
 
-class Handler extends SqsHandler
+
+class HttpHandler implements RequestHandlerInterface
 {
-    public function handleSqs(SqsEvent $event, Context $context): void
+
+    public function __construct(Api $api)
     {
-        var_dump($event);
-        var_dump($context);
+        $this->api = $api;
+    }
 
-        foreach ($event->getRecords() as $record) {
-            // We can retrieve the message body of each record via `->getBody()`
-            $body = $record->getBody();
+    public function handle(ServerRequestInterface $request): ResponseInterface
+    {
+        $res = [];
 
-            // do something
-        }
+        /** @var $event Bref\Event\Http\HttpRequestEvent */
+        $res['event'] = $request->getAttributes(); 
+        $res['name'] = $request->getQueryParams()['name'] ?? 'world';
+        $res['cookies'] = $request->getCookieParams();
+
+        $data = array_merge($res, $this->api->debuginfo());
+
+        return new Response(200, [], $data);
     }
 }
 
-return new Handler();
+return new HttpHandler(new Api);
